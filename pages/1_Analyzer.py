@@ -122,7 +122,29 @@ if st.button("Run Analysis"):
         )
 
         st.markdown("### 📈 Deal Summary")
-        st.write(results)
+
+        col1, col2, col3 = st.columns(3)
+        col4, col5, col6 = st.columns(3)
+
+        col1.metric("Gross Rent (Annual)", results["Gross Rent (Annual)"])
+        col2.metric("NOI", results["NOI"])
+        col3.metric("Annual Debt Service", results["Annual Debt Service"])
+
+        col4.metric("Cash Flow (Annual)", results["Cash Flow (Annual)"])
+        col5.metric("Cap Rate", results["Cap Rate"])
+        col6.metric("Cash-on-Cash Return", results["Cash-on-Cash Return"])
+        
+        
+        st.markdown("### 📆 Monthly Metrics")
+
+        m1, m2, m3, m4 = st.columns(4)
+
+        m1.metric("Gross Rent (Monthly)", results["Gross Rent (Monthly)"])
+        m2.metric("NOI (Monthly)", results["NOI (Monthly)"])
+        m3.metric("Debt Service (Monthly)", results["Debt Service (Monthly)"])
+        m4.metric("Cash Flow (Monthly)", results["Cash Flow (Monthly)"])
+
+
 
     except Exception as e:
         st.error(f"Error running analysis: {e}")

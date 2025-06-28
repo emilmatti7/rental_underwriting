@@ -21,6 +21,9 @@ def run_underwriting(
     down_payment = price * (down_payment_pct / 100)
     cash_on_cash = (cash_flow / down_payment) * 100 if down_payment > 0 else 0
     cap_rate = (noi / price) * 100 if price > 0 else 0
+    monthly_gross_income = rents
+    monthly_noi = noi / 12
+    monthly_cash_flow = cash_flow / 12
 
     return {
         "Gross Rent (Annual)": f"${annual_gross_income:,.0f}",
@@ -28,5 +31,9 @@ def run_underwriting(
         "Annual Debt Service": f"${mortgage_payment * 12:,.0f}",
         "Cash Flow (Annual)": f"${cash_flow:,.0f}",
         "Cap Rate": f"{cap_rate:.2f}%",
-        "Cash-on-Cash Return": f"{cash_on_cash:.2f}%"
+        "Cash-on-Cash Return": f"{cash_on_cash:.2f}%",
+        "Gross Rent (Monthly)": f"${monthly_gross_income:,.0f}",
+        "NOI (Monthly)": f"${monthly_noi:,.0f}",
+        "Debt Service (Monthly)": f"${mortgage_payment:,.0f}",
+        "Cash Flow (Monthly)": f"${monthly_cash_flow:,.0f}"
     }
